@@ -94,6 +94,11 @@ def _range_ok(entry: dict) -> bool:
     return 0 <= entry["start"] < entry["end"] <= MINUTES_PER_DAY
 
 
+def _show(minutes: int) -> str:
+    """HH:MM for real clock times, the raw number for out-of-range ones."""
+    return fmt_time(minutes) if 0 <= minutes <= MINUTES_PER_DAY else str(minutes)
+
+
 def _check_structure(plan: Any) -> list:
     if not isinstance(plan, list):
         return [Violation(
@@ -171,7 +176,8 @@ def _check_each_entry(problem: Problem, plan: list) -> list:
             violations.append(Violation(
                 "bad_time_range",
                 f"Task '{task_id}' has an invalid time range "
-                f"({start}-{end}); it needs 0 <= start < end <= 1440.",
+                f"({_show(start)}-{_show(end)}); the start must be before "
+                f"the end, within 00:00-24:00.",
                 (task_id,),
             ))
             continue

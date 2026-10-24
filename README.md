@@ -20,7 +20,7 @@ validity, number of tasks moved, and effort.
 - [x] Problem format, checker, exact solver, minimal-change repair
 - [x] Random problem and change generator, with difficulty presets
 - [x] Tests, including comparison against brute force
-- [ ] LLM wrapper (Gemini) with caching and retries
+- [x] LLM wrapper (Gemini) with caching and retries
 - [ ] Methods and experiment runner
 - [ ] Analysis, graphs, Streamlit demo
 
